@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { Github, Twitter, Linkedin } from "lucide-react";
 
-export function Footer() {
+export function PrimaryFooter() {
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,

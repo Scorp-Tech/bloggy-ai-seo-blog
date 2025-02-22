@@ -4,7 +4,9 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
+import { PrimaryFooter } from "@/components/layout/footer";
+import { SecondaryFooter } from "@/components/layout/secondary-footer";
+import { TooltipProvider } from "@radix-ui/react-tooltip";
 
 export const metadata: Metadata = {
   title: 'BlogAI - AI-Powered Blog Writing Platform',
@@ -37,10 +39,12 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <Header />
-          {children}
-          <Footer />
-          <Toaster />
+          <TooltipProvider>
+            <main>
+              {children}
+            </main>
+            <Toaster />
+          </TooltipProvider>
         </ThemeProvider>
       </body>
     </html>
