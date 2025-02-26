@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { PenLine } from "lucide-react";
 import Link from "next/link";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 export function Header() {
   const { scrollY } = useScroll();
@@ -36,6 +37,7 @@ export function Header() {
         </div>
 
         <div className="flex items-center space-x-4">
+          <ThemeToggle />
           <Button variant="ghost" className="hidden md:inline-flex">
             Sign In
           </Button>

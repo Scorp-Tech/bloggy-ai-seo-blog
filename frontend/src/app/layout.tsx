@@ -29,20 +29,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          enableSystem={false}
+          defaultTheme="system"
+          enableSystem
           disableTransitionOnChange
+          storageKey="blog-theme"
         >
           <TooltipProvider>
-            <main>
-              {children}
-            </main>
+            <main>{children}</main>
             <Toaster />
           </TooltipProvider>
         </ThemeProvider>
