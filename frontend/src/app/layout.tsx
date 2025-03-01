@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Public_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
-import { Header } from "@/components/layout/header";
-import { PrimaryFooter } from "@/components/layout/footer";
-import { SecondaryFooter } from "@/components/layout/secondary-footer";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 
 export const metadata: Metadata = {
@@ -23,6 +20,12 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const publicSans = Public_Sans({
+  variable: '--font-public-sans',
+  subsets: ['latin'],
+  // weight: ['100', '200', '300',]
+})
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -30,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${publicSans.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

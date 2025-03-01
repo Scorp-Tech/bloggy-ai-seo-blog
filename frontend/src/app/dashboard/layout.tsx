@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 
 import { AppSidebar } from "@/components/dashboard/app-sidebar"
 import {
@@ -23,15 +22,6 @@ export const metadata: Metadata = {
   description: 'Create SEO-optimized content with AI assistance',
 };
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export default function RootLayout({
   children,
@@ -62,7 +52,7 @@ export default function RootLayout({
           </div>
         </header>
         <div className="flex flex-1 p-3 pt-0">
-          <div className="h-full flex flex-1 flex-col gap-4 bg-muted/50 rounded-xl p-2">
+          <div className="h-full flex flex-1 flex-col gap-4 rounded-xl p-2">
             {children}  
           </div>
         </div>
