@@ -51,7 +51,7 @@ export function MatrixCardSmall({
     const StatusIcon = statusConfig[status].icon;
 
     return (
-        <Card className={cn("w-full p-4", cardSx)}>
+        <Card className={cn("w-full font-publicSans p-4", cardSx)}>
             <div className="flex justify-between items-center">
                 <div className="flex flex-col gap-2">
                     <div className="text-muted-foreground text-xl font-bold">

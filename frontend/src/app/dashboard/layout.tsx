@@ -51,8 +51,8 @@ export default function RootLayout({
             </Breadcrumb>
           </div>
         </header>
-        <div className="flex flex-1 p-3 pt-0">
-          <div className="h-full flex flex-1 flex-col gap-4 rounded-xl p-2">
+        <div className="flex flex-1 p-3 pt-0 ">
+          <div className="h-full flex flex-1 flex-col gap-4 rounded-xl p-2 font-poppins">
             {children}  
           </div>
         </div>

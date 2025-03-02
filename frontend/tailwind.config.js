@@ -11,7 +11,8 @@ module.exports = {
 			fontFamily: {
 				sans: ["var(--font-geist-sans)", ...fontFamily.sans],
 				mono: ["var(--font-geist-mono)", ...fontFamily.mono],
-				'publicSans': 'var(--font-public-sans)'
+				'publicSans': 'var(--font-public-sans)',
+				'poppins': 'var(--font-poppins)'
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

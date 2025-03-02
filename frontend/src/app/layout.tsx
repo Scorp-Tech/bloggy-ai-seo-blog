@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Public_Sans } from "next/font/google";
+import { Geist, Geist_Mono, Poppins, Public_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
@@ -25,6 +25,10 @@ const publicSans = Public_Sans({
   subsets: ['latin'],
   // weight: ['100', '200', '300',]
 })
+const poppins= Poppins({
+  variable: "--font-poppins",
+  weight: ["400", "500","800"],
+})
 
 export default function RootLayout({
   children,
@@ -33,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${publicSans.variable} antialiased`}>
+      <body className={`${geistSans.variable} ${geistMono.variable} ${publicSans.variable} ${poppins.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
