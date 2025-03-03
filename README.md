@@ -94,49 +94,7 @@ To verify the backend is running correctly:
     ```bash
     yarn install
     ```
-
-3. Install Tailwind CSS dependencies:
-    ```bash
-    yarn add -D tailwindcss@latest postcss@latest autoprefixer@latest
-    ```
-
-4. Initialize Tailwind CSS:
-    ```bash
-    npx tailwindcss init -p
-    ```
-
-5. Update `tailwind.config.js`:
-    ```javascript
-    /** @type {import('tailwindcss').Config} */
-    module.exports = {
-      content: [
-        "./src/**/*.{js,ts,jsx,tsx,mdx}",
-      ],
-      theme: {
-        extend: {},
-      },
-      plugins: [],
-    }
-    ```
-
-6. Update `postcss.config.js`:
-    ```javascript
-    module.exports = {
-      plugins: [
-        'tailwindcss',
-        'autoprefixer',
-      ],
-    }
-    ```
-
-7. Make sure your `globals.css` has the proper Tailwind directives:
-    ```css
-    @tailwind base;
-    @tailwind components;
-    @tailwind utilities;
-    ```
-
-8. Start the development server:
+3. Start the development server:
     ```bash
     yarn dev
     ```
