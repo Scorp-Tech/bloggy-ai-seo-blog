@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -12,11 +13,12 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useToast } from "@/hooks/use-toast"
+import { signUp } from "@/lib/supabase/auth"
 
 interface SignupFormData {
   name: string;
   email: string;
-  phone: string;
   password: string;
   confirmPassword: string;
 }
@@ -25,17 +27,52 @@ export function SignupForm({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) {
+  const router = useRouter();
+  const { toast } = useToast();
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState<SignupFormData>({
     name: "",
     email: "",
-    phone: "",
     password: "",
     confirmPassword: ""
   });
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Signup Form Data:", formData);
+    
+    if (formData.password !== formData.confirmPassword) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Passwords do not match",
+      });
+      return;
+    }
+
+    setIsLoading(true);
+    
+    try {
+      const data = await signUp({
+        email: formData.email,
+        password: formData.password,
+        name: formData.name,
+      });
+
+      toast({
+        title: "Success",
+        description: "Please check your email to confirm your account",
+      });
+
+      router.push('/login');
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: error instanceof Error ? error.message : "Something went wrong",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -107,17 +144,6 @@ export function SignupForm({
                   />
                 </div>
                 <div className="grid gap-2">
-                  <Label htmlFor="phone">Phone Number</Label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    placeholder="+1 (555) 000-0000"
-                    required
-                    value={formData.phone}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="grid gap-2">
                   <Label htmlFor="password">Password</Label>
                   <Input 
                     id="password" 
@@ -137,8 +163,8 @@ export function SignupForm({
                     onChange={handleChange}
                   />
                 </div>
-                <Button type="submit" className="w-full">
-                  Sign Up
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? "Creating account..." : "Sign Up"}
                 </Button>
               </div>
               <div className="text-center text-sm">
