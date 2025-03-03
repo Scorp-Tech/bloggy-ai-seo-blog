@@ -4,21 +4,9 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { PenLine } from "lucide-react";
 import Link from "next/link";
-import { ThemeToggle } from "@/components/theme/theme-toggle";
 
-export function Header() {
-  const { scrollY } = useScroll();
-  const backgroundColor = useTransform(
-    scrollY,
-    [0, 100],
-    ["rgba(10, 10, 15, 0)", "rgba(10, 10, 15, 0.8)"]
-  );
-
+export function AdminHeader() {
   return (
-    <motion.header
-      style={{ backgroundColor }}
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-sm"
-    >
       <nav className="container mx-auto px-4 h-16 flex items-center justify-between">
         <Link href="/" className="text-xl font-bold text-primary">
           BlogAI
@@ -37,7 +25,6 @@ export function Header() {
         </div>
 
         <div className="flex items-center space-x-4">
-          <ThemeToggle />
           <Button variant="ghost" className="hidden md:inline-flex">
             Sign In
           </Button>
@@ -47,6 +34,5 @@ export function Header() {
           </Button>
         </div>
       </nav>
-    </motion.header>
   );
 }
