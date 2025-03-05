@@ -5,3 +5,5 @@ export const NAV_ITEMS = [
     { label: "Blog", href: "#blog" },
     { label: "FAQ", href: "#faq" },
   ];
+
+export const BRAND_NAME = "Rank Up SEO"

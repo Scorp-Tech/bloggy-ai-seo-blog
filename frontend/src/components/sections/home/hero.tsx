@@ -123,10 +123,7 @@ export function Hero() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.6, repeat: Infinity, repeatType: "reverse" }}
       >
-        <Link href="#features" className="flex flex-col items-center text-sm text-muted-foreground">
-          <span>Scroll to explore</span>
-          <ArrowRight className="mt-1 rotate-90" size={16} />
-        </Link>
+        <ArrowRight className="mt-1 rotate-90" size={30} stroke="white" />
       </motion.div>
     </div>
   </section>

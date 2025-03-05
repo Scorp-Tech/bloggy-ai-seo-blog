@@ -14,7 +14,6 @@ interface HeaderProps{
 }
 
 export function Header( {className,navItems}: HeaderProps) {
-
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -30,7 +29,7 @@ export function Header( {className,navItems}: HeaderProps) {
   return (
     <motion.div
       className={cn(
-        "fixed left-0 right-0 top-0 z-50 transition-all duration-300",
+        "fixed left-0 right-0 top-0 z-50 transition-all duration-300 bg-white",
         isScrolled ? "py-2" : "py-4",
         className
       )}
