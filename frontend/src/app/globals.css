@@ -10,7 +10,7 @@ body {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-  --radius: 0.5rem;
+  --radius: 0.5rem
 }
 
 @media (prefers-color-scheme: dark) {
@@ -84,6 +84,98 @@ body {
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
+
+@layer components{
+  .blog{
+    h1 {
+      @apply text-3xl font-bold mt-4 mb-2 text-center;
+    }
+    h2 {
+      @apply text-2xl font-semibold mt-3 mb-1;
+    }
+    h3 {
+      @apply text-xl font-medium mt-2 mb-1;
+    }
+    p {
+      @apply mb-4;
+    }
+    ul {
+      @apply list-disc list-inside mb-4 list-outside;
+      margin-left: 30px
+    }
+    a {
+      @apply text-blue-600 underline;
+    }
+    img {
+      @apply rounded-xl
+    }
+  }
+}
+
+
+
+/* @layer components {
+  .blog {
+    *{
+      margin: unset !important;
+    }
+    h1 {
+      font-size: xx-large !important;
+      font-weight: bold !important;
+      color: inherit !important;
+    }
+    h2 {
+      font-size: x-large !important;
+      font-weight: semibold !important;
+      color: inherit !important;
+    }
+    h3 {
+      font-size: large !important;
+      font-weight: semibold !important;
+      color: inherit !important;
+    }
+    h4 {
+      font-size: medium !important;
+      font-weight: semibold !important;
+      color: inherit !important;
+    }
+    h5 {
+      font-size: small !important;
+      font-weight: semibold !important;
+      color: inherit !important;
+    }
+    h6 {
+      font-size: x-small !important;
+      font-weight: semibold !important;
+      color: inherit !important;
+    }
+    p {
+      font-size: 1rem !important;
+      font-weight: normal !important;
+      color: inherit !important;
+    }
+    a {
+      color: blue !important;
+      text-decoration: underline !important;
+    }
+    ul, ol {
+      list-style: inherit !important;
+      padding-left: 1.5rem !important;
+    }
+    blockquote {
+      font-style: italic !important;
+      border-left: 4px solid #ddd !important;
+      padding-left: 1rem !important;
+    }
+    strong {
+      font-weight: bold !important;
+    }
+    em {
+      font-style: italic !important;
+    }
+  }
+} */
+
 
 @layer base {
   * {
