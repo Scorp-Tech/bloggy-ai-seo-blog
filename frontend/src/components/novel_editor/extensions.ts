@@ -4,7 +4,6 @@ import {
   CodeBlockLowlight,
   Color,
   CustomKeymap,
-  GlobalDragHandle,
   HighlightExtension,
   HorizontalRule,
   Mathematics,
@@ -22,9 +21,11 @@ import {
   Youtube,
 } from "novel";
 import { Markdown } from "tiptap-markdown";
-
 import { cx } from "class-variance-authority";
 import { common, createLowlight } from "lowlight";
+import GlobalDragHandle from 'tiptap-extension-global-drag-handle'
+import AutoJoiner from 'tiptap-extension-auto-joiner'
+
 
 //TODO I am using cx here to get tailwind autocomplete working, idk if someone else can write a regex to just capture the class key in objects
 const aiHighlight = AIHighlight;
@@ -181,4 +182,5 @@ export const defaultExtensions = [
   Color,
   CustomKeymap,
   GlobalDragHandle,
+  AutoJoiner,
 ];
