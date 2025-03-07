@@ -49,4 +49,24 @@ export async function logout() {
   if (error) {
     throw new Error(error.message);
   }
+}
+
+export async function getCurrentSession() {
+  const { data: { session }, error } = await supabase.auth.getSession();
+  
+  if (error) {
+    throw new Error(error.message);
+  }
+  
+  return session;
+}
+
+export async function refreshSession() {
+  const { data: { session }, error } = await supabase.auth.refreshSession();
+  
+  if (error) {
+    throw new Error(error.message);
+  }
+  
+  return session;
 } 

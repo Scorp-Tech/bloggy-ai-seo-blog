@@ -1,3 +1,5 @@
+"use client";
+
 import type { Metadata } from "next";
 
 import { AppSidebar } from "@/components/dashboard/app-sidebar"
@@ -15,19 +17,23 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import { useAuth } from '@/hooks/use-auth';
+import { LoadingScreen } from '@/components/common/loading-screen';
 
 
-export const metadata: Metadata = {
-  title: 'Dashboard',
-  description: 'Create SEO-optimized content with AI assistance',
-};
-
-
-export default function RootLayout({
+export default function DashboardLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
+  const { isLoading, session, user } = useAuth(true);
+
+  console.log({session, user})
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
+
   return (
     <SidebarProvider>
       <AppSidebar />

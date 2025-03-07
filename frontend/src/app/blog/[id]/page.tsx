@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import Markdown from 'markdown-to-jsx'
 import { supabase } from "@/lib/supabase/client";
+import { useAuth } from "@/hooks/use-auth";
 
 
 interface Params {
@@ -10,8 +11,12 @@ interface Params {
 
 export default async function BlogPost({ params }: { params: Params }) {
   const { id } = await params;
+
+  const {session, user} = useAuth()
+
+  console.log('session:: ', {session, user})
   
-  console.log((await supabase.auth.getSession()));
+  // console.log((await supabase.auth.getSession()));
   
   // Fetch blog post by slug
   const { data, error } = await supabase.from("Blogs").select("*").eq("id", id).single()
