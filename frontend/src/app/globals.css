@@ -140,3 +140,31 @@ html {
     @apply bg-background text-foreground;
   }
 }
+
+@layer components{
+  .blog{
+    h1 {
+      @apply text-3xl font-bold mt-4 mb-2;
+      margin-bottom: 30px;
+    }
+    h2 {
+      @apply text-2xl font-semibold mt-3 mb-1;
+    }
+    h3 {
+      @apply text-xl font-medium mt-2 mb-1;
+    }
+    p {
+      @apply mb-4;
+    }
+    ul {
+      @apply list-disc list-inside mb-4 list-outside;
+      margin-left: 30px
+    }
+    a {
+      @apply text-blue-600 underline;
+    }
+    img {
+      @apply rounded-xl
+    }
+  }
+}
