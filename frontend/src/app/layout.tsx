@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
+import dynamic from 'next/dynamic'
 
 export const metadata: Metadata = {
   title: 'BlogAI - AI-Powered Blog Writing Platform',
@@ -35,8 +36,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const CrispWithNoSSR = dynamic(
+    () => import('../components/chat/crisp-chat')
+  )
   return (
     <html lang="en" suppressHydrationWarning>
+      <CrispWithNoSSR />
       <body className={`${geistSans.variable} ${geistMono.variable} ${publicSans.variable} ${poppins.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
