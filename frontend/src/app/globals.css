@@ -98,7 +98,7 @@ body {
       @apply text-xl font-medium mt-2 mb-1;
     }
     p {
-      @apply mb-4;
+      margin: 0
     }
     ul {
       @apply list-disc list-inside mb-4 list-outside;
@@ -110,72 +110,46 @@ body {
     img {
       @apply rounded-xl
     }
+    blockquote{
+      border-color: hsl(var(--border)) !important;
+    }
+  }
+  .markdown-editor{
+    /* Reset all Markdown-rendered elements to their default browser styles */
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, code, ul, ol, li, dl, dt, dd, table, th, td, a, em, strong, img {
+  font-size: revert;
+  font-weight: revert;
+  margin-bottom: 5px;
+}
+h1{
+  text-align: center!important;
+}
+
+/* Ensure lists use default styling */
+ul, ol {
+  all: revert;
+}
+
+/* Reset code blocks */
+pre {
+  white-space: pre-wrap; /* Preserve line breaks */
+}
+
+/* Reset table styling */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid black; /* Default for visible table borders */
+  padding: 4px;
+}
+
   }
 }
 
 
-
-/* @layer components {
-  .blog {
-    *{
-      margin: unset !important;
-    }
-    h1 {
-      font-size: xx-large !important;
-      font-weight: bold !important;
-      color: inherit !important;
-    }
-    h2 {
-      font-size: x-large !important;
-      font-weight: semibold !important;
-      color: inherit !important;
-    }
-    h3 {
-      font-size: large !important;
-      font-weight: semibold !important;
-      color: inherit !important;
-    }
-    h4 {
-      font-size: medium !important;
-      font-weight: semibold !important;
-      color: inherit !important;
-    }
-    h5 {
-      font-size: small !important;
-      font-weight: semibold !important;
-      color: inherit !important;
-    }
-    h6 {
-      font-size: x-small !important;
-      font-weight: semibold !important;
-      color: inherit !important;
-    }
-    p {
-      font-size: 1rem !important;
-      font-weight: normal !important;
-      color: inherit !important;
-    }
-    a {
-      color: blue !important;
-      text-decoration: underline !important;
-    }
-    ul, ol {
-      list-style: inherit !important;
-      padding-left: 1.5rem !important;
-    }
-    blockquote {
-      font-style: italic !important;
-      border-left: 4px solid #ddd !important;
-      padding-left: 1rem !important;
-    }
-    strong {
-      font-weight: bold !important;
-    }
-    em {
-      font-style: italic !important;
-    }
-  }
-} */
 
 
 @layer base {
