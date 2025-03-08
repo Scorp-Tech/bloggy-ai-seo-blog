@@ -224,6 +224,9 @@ html {
   animation-delay: 4s;
 }
 
+button:active{
+  scale: 1.01
+}
 
 
 @layer base {
