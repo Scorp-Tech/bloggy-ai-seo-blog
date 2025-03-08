@@ -2,23 +2,17 @@ import {
   AIHighlight,
   CharacterCount,
   CodeBlockLowlight,
-  Color,
   CustomKeymap,
   HighlightExtension,
   HorizontalRule,
-  Mathematics,
   Placeholder,
   StarterKit,
-  TaskItem,
-  TaskList,
   TextStyle,
   TiptapImage,
   TiptapLink,
   TiptapUnderline,
-  Twitter,
   UpdatedImage,
   UploadImagesPlugin,
-  Youtube,
 } from "novel";
 import { Markdown } from "tiptap-markdown";
 import { cx } from "class-variance-authority";
@@ -61,18 +55,6 @@ const updatedImage = UpdatedImage.configure({
   HTMLAttributes: {
     class: cx("rounded-lg border border-muted"),
   },
-});
-
-const taskList = TaskList.configure({
-  HTMLAttributes: {
-    class: cx("not-prose pl-2 "),
-  },
-});
-const taskItem = TaskItem.configure({
-  HTMLAttributes: {
-    class: cx("flex gap-2 items-start my-4"),
-  },
-  nested: true,
 });
 
 const horizontalRule = HorizontalRule.configure({
@@ -127,29 +109,6 @@ const codeBlockLowlight = CodeBlockLowlight.configure({
   lowlight: createLowlight(common),
 });
 
-const youtube = Youtube.configure({
-  HTMLAttributes: {
-    class: cx("rounded-lg border border-muted"),
-  },
-  inline: false,
-});
-
-const twitter = Twitter.configure({
-  HTMLAttributes: {
-    class: cx("not-prose"),
-  },
-  inline: false,
-});
-
-const mathematics = Mathematics.configure({
-  HTMLAttributes: {
-    class: cx("text-foreground rounded p-1 hover:bg-accent cursor-pointer"),
-  },
-  katexOptions: {
-    throwOnError: false,
-  },
-});
-
 const characterCount = CharacterCount.configure();
 
 const markdownExtension = Markdown.configure({
@@ -169,20 +128,14 @@ export const defaultExtensions = [
   tiptapLink,
   tiptapImage,
   updatedImage,
-  taskList,
-  taskItem,
   horizontalRule,
   aiHighlight,
   codeBlockLowlight,
-  youtube,
-  twitter,
-  mathematics,
   characterCount,
   TiptapUnderline,
   markdownExtension,
   HighlightExtension,
   TextStyle,
-  Color,
   CustomKeymap,
   GlobalDragHandle,
   AutoJoiner,

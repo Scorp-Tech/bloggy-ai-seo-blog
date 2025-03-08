@@ -35,7 +35,7 @@ export const TextButtons = () => {
     {
       name: "code",
       isActive: (editor) => editor!.isActive("code"),
-      command: (editor) => editor!.chain().focus().toggleCode().run(),
+      command: (editor) => editor!.chain().focus().toggleCodeBlock().run(),
       icon: CodeIcon,
     },
   ];

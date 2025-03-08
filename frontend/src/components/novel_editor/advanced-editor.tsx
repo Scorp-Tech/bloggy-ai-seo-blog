@@ -18,9 +18,7 @@ import {
 import { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { defaultExtensions } from "./extensions";
-import { ColorSelector } from "./selectors/color-selector";
 import { LinkSelector } from "./selectors/link-selector";
-import { MathSelector } from "./selectors/math-selector";
 import { NodeSelector } from "./selectors/node-selector";
 import { Separator } from "./ui/separator";
 
@@ -129,7 +127,6 @@ const TailwindAdvancedEditor = () => {
               <NodeSelector open={openNode} onOpenChange={setOpenNode} />
               <LinkSelector open={openLink} onOpenChange={setOpenLink} />
               <TextButtons />
-              <ColorSelector open={openColor} onOpenChange={setOpenColor} />
           </EditorBubble>
         </EditorContent>
       </EditorRoot>
