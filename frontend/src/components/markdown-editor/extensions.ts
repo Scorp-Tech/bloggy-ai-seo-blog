@@ -1,6 +1,5 @@
 import {Markdown} from 'tiptap-markdown'
 import {
-  AIHighlight,
   CharacterCount,
   CodeBlockLowlight,
   Color,
@@ -10,25 +9,22 @@ import {
   HorizontalRule,
   Placeholder,
   StarterKit,
-  TaskItem,
-  TaskList,
   TextStyle,
   TiptapImage,
   TiptapLink,
   TiptapUnderline,
-  Twitter,
   UpdatedImage,
   UploadImagesPlugin,
-  Youtube,
 } from "novel";
 
 import { cx } from "class-variance-authority";
 import { common, createLowlight } from "lowlight";
 
-//TODO I am using cx here to get tailwind autocomplete working, idk if someone else can write a regex to just capture the class key in objects
-const aiHighlight = AIHighlight;
-//You can overwrite the placeholder with your own configuration
-const placeholder = Placeholder;
+const placeholder = Placeholder.configure({
+  placeholder: "Write '/' here to get started",
+  includeChildren: true,
+});
+
 const tiptapLink = TiptapLink.configure({
   HTMLAttributes: {
     class: cx(
@@ -36,6 +32,8 @@ const tiptapLink = TiptapLink.configure({
     ),
   },
 });
+
+
 
 const tiptapImage = TiptapImage.extend({
   addProseMirrorPlugins() {
@@ -56,18 +54,6 @@ const updatedImage = UpdatedImage.configure({
   HTMLAttributes: {
     class: cx("rounded-lg border border-muted"),
   },
-});
-
-const taskList = TaskList.configure({
-  HTMLAttributes: {
-    class: cx("not-prose pl-2 "),
-  },
-});
-const taskItem = TaskItem.configure({
-  HTMLAttributes: {
-    class: cx("flex gap-2 items-start my-4"),
-  },
-  nested: true,
 });
 
 const horizontalRule = HorizontalRule.configure({
@@ -122,19 +108,6 @@ const codeBlockLowlight = CodeBlockLowlight.configure({
   lowlight: createLowlight(common),
 });
 
-const youtube = Youtube.configure({
-  HTMLAttributes: {
-    class: cx("rounded-lg border border-muted"),
-  },
-  inline: false,
-});
-
-const twitter = Twitter.configure({
-  HTMLAttributes: {
-    class: cx("not-prose"),
-  },
-  inline: false,
-});
 
 
 const characterCount = CharacterCount.configure();
@@ -156,13 +129,8 @@ export const defaultExtensions = [
   tiptapLink,
   tiptapImage,
   updatedImage,
-  taskList,
-  taskItem,
   horizontalRule,
-  aiHighlight,
   codeBlockLowlight,
-  youtube,
-  twitter,
   characterCount,
   TiptapUnderline,
   markdownExtension,
@@ -171,4 +139,5 @@ export const defaultExtensions = [
   Color,
   CustomKeymap,
   GlobalDragHandle,
+  placeholder
 ];

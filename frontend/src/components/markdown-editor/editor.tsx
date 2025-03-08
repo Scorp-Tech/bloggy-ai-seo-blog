@@ -72,11 +72,6 @@ const MarkdownEditor = () => {
         <div className={charsCount ? "rounded-lg bg-[#0000000d] px-2 py-1 text-sm text-muted-foreground" : "hidden"}>
           {charsCount} Words
         </div>
-        <div>
-            <NodeSelector open={openNode} onOpenChange={setOpenNode} />
-            <LinkSelector open={openLink} onOpenChange={setOpenLink} />
-            <TextButtons />
-        </div>
       </div>
       <EditorRoot>
         <EditorContent
