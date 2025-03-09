@@ -1,5 +1,4 @@
 "use client";
-import { defaultEditorContent } from "@/lib/content";
 import {
   EditorCommand,
   EditorCommandEmpty,
@@ -37,11 +36,10 @@ const MarkdownEditor = () => {
   const [openLink, setOpenLink] = useState(false);
 
 
-  //Apply Codeblock Highlighting on the HTML from editor.getHTML()
   const highlightCodeblocks = (content: string) => {
     const doc = new DOMParser().parseFromString(content, "text/html");
     doc.querySelectorAll("pre code").forEach((el) => {
-      // @ts-ignore
+      // @ts-expect-error - TypeScript does not recognize the `highlightElement` method on the `hljs` object.
       // https://highlightjs.readthedocs.io/en/latest/api.html?highlight=highlightElement#highlightelement
       hljs.highlightElement(el);
     });
@@ -58,15 +56,16 @@ const MarkdownEditor = () => {
   }, 500);
 
   useEffect(() => {
-    const content = window.localStorage.getItem("novel-content");
-    if (content) setInitialContent(JSON.parse(content));
-    else setInitialContent(defaultEditorContent);
+    const content = window.localStorage.getItem("html-content") as unknown
+    // if (content) setInitialContent(JSON.parse(content));
+    if(content)
+      setInitialContent(content);
   }, []);
 
   if (!initialContent) return null;
 
   return (
-    <div className="relative w-full max-w-screen-lg">
+    <div className="relative w-full flex justify-center">
       <div className="flex absolute right-5 top-5 z-10 mb-5 gap-2">
         <div className="rounded-lg bg-[#0000000d] px-2 py-1 text-sm text-muted-foreground">{saveStatus}</div>
         <div className={charsCount ? "rounded-lg bg-[#0000000d] px-2 py-1 text-sm text-muted-foreground" : "hidden"}>
@@ -81,6 +80,10 @@ const MarkdownEditor = () => {
           editorProps={{
             handleDOMEvents: {
               keydown: (_view, event) => handleCommandNavigation(event),
+              contextmenu: (_view, event) => {
+                console.log(_view, event);
+                
+              }
             },
             handlePaste: (view, event) => handleImagePaste(view, event, uploadFn),
             handleDrop: (view, event, _slice, moved) => handleImageDrop(view, event, moved, uploadFn),
@@ -101,7 +104,7 @@ const MarkdownEditor = () => {
               {suggestionItems.map((item) => (
                 <EditorCommandItem
                   value={item.title}
-                  onCommand={(val) => item.command(val)}
+                  onCommand={(val) => item.command?.(val)}
                   className="flex w-full items-center space-x-2 rounded-md px-2 py-1 text-left text-sm hover:bg-accent aria-selected:bg-accent"
                   key={item.title}
                 >
