@@ -24,7 +24,7 @@ export function Hero() {
           transition={{ duration: 0.5 }}
         >
           <h1 className="mb-6 text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
-            <AnimatedText text="AI-Powered" className="block text-primary" />
+            <AnimatedText text="AI-Powered" className="block text-[#3d00a0]" />
             <AnimatedText text="Article Generation" className="block" />
             <AnimatedText text="Write Smarter, Rank Faster!" className="block bg-gradient-to-r from-primary to-purple-500 bg-clip-text text-transparent" />
           </h1>

@@ -1,6 +1,11 @@
 import { BlogCard } from "@/components/ui/blog-card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { supabase } from "@/lib/supabase/client";
+
+const blogs = await supabase.from("Blogs").select("title, cover_image, created_at, id, excerpt")
+console.log(blogs);
+
 
 export function Blog() {
     return (
@@ -17,29 +22,17 @@ export function Blog() {
           </div>
           
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <BlogCard
-              title="10 Ways AI is Revolutionizing Content Creation in 2025"
-              excerpt="Discover how artificial intelligence is transforming the content creation landscape and how you can leverage it."
-              imageSrc="https://images.unsplash.com/photo-1677442135968-6054f8c4535b"
-              date={new Date("2025-01-15")}
-              slug="ai-revolutionizing-content-creation"
-            />
-            
-            <BlogCard
-              title="SEO Best Practices for AI-Generated Content"
-              excerpt="Learn how to optimize your AI-generated content for search engines and drive more organic traffic."
-              imageSrc="https://images.unsplash.com/photo-1432888622747-4eb9a8f5f01a"
-              date={new Date("2025-01-10")}
-              slug="seo-best-practices-ai-content"
-            />
-            
-            <BlogCard
-              title="How to Create a Content Strategy with AI Tools"
-              excerpt="A step-by-step guide to developing a comprehensive content strategy using AI-powered tools."
-              imageSrc="https://images.unsplash.com/photo-1460925895917-afdab827c52f"
-              date={new Date("2025-01-05")}
-              slug="content-strategy-ai-tools"
-            />
+            {
+              blogs.data?.map(blog => (<BlogCard
+                  key={blog.id}
+                  title={blog.title}
+                  excerpt={blog.excerpt}
+                  imageSrc={blog.cover_image}
+                  date={new Date(blog.created_at)}
+                  slug={blog.id}
+                />)
+              )
+            }
           </div>
           
           <div className="mt-12 text-center">
