@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { login } from "@/lib/supabase/auth"
+import { getCompany, login } from "@/lib/supabase/auth"
 import { useToast } from "@/hooks/use-toast"
 import { supabase } from "@/lib/supabase/client";
 
@@ -43,6 +43,8 @@ export function LoginForm({
         email: formData.email,
         password: formData.password,
       });
+      const companyData = await getCompany()
+      localStorage.setItem("company", JSON.stringify(companyData))
       console.log("Login Data", data);
       
       console.log("Supabase Session", supabase.auth.getSession())

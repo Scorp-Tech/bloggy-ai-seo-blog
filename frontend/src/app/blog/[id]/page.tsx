@@ -6,6 +6,7 @@ import { supabase } from "@/lib/supabase/client";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { BRAND_NAME } from "@/constant/app.const";
+import { useAuth } from "@/hooks/use-auth";
 
 
 async function fetchBlogPost(id: string) {
@@ -15,6 +16,7 @@ async function fetchBlogPost(id: string) {
   }
   return data;
 }
+
 
 export default function BlogPost() {
   const param = useParams();
