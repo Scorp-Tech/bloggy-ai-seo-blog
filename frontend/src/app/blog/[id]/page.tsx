@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Markdown from 'markdown-to-jsx'
 import { supabase } from "@/lib/supabase/client";
-import { useParams } from "next/navigation";
+import { useAuth } from "@/hooks/use-auth";
 
 
 async function fetchBlogPost(id: string) {
@@ -13,6 +13,7 @@ async function fetchBlogPost(id: string) {
   }
   return data;
 }
+
 
 export default function BlogPost() {
   const param = useParams();

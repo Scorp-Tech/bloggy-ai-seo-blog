@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@radix-ui/react-tooltip";
 import dynamic from 'next/dynamic'
+import { SessionProvider } from '@/contexts/session-context';
 
 export const metadata: Metadata = {
   title: 'BlogAI - AI-Powered Blog Writing Platform',
@@ -43,18 +44,20 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <CrispWithNoSSR />
       <body className={`${geistSans.variable} ${geistMono.variable} ${publicSans.variable} ${poppins.variable} antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-          storageKey="blog-theme"
-        >
-          <TooltipProvider>
-            <main>{children}</main>
-            <Toaster />
-          </TooltipProvider>
-        </ThemeProvider>
+        <SessionProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+            storageKey="blog-theme"
+          >
+            <TooltipProvider>
+              <main>{children}</main>
+              <Toaster />
+            </TooltipProvider>
+          </ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   );
