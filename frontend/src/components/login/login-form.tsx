@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { login } from "@/lib/supabase/auth"
 import { useToast } from "@/hooks/use-toast"
+import { supabase } from "@/lib/supabase/client";
 
 interface LoginFormData {
   email: string;
@@ -42,7 +43,9 @@ export function LoginForm({
         email: formData.email,
         password: formData.password,
       });
-
+      console.log("Login Data", data);
+      
+      console.log("Supabase Session", supabase.auth.getSession())
       toast({
         title: "Success",
         description: "Successfully logged in",
