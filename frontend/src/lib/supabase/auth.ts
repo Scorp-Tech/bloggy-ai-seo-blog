@@ -1,5 +1,5 @@
 import { supabase } from './client';
-import { AuthError } from '@supabase/supabase-js';
+// import { AuthError } from '@supabase/supabase-js';
 
 interface SignUpData {
   email: string;
@@ -70,3 +70,12 @@ export async function refreshSession() {
   
   return session;
 } 
+
+export async function getCompany(){
+  const session = await getCurrentSession()
+  const {data, error} = await supabase.from("Company Data").select("*").eq("user_id", session?.user.id).single()
+  if(error){
+    throw new Error(error.message)
+  }
+  return data
+}
