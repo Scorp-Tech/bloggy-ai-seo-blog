@@ -6,6 +6,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button"
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { LOGO, BRAND_NAME } from "@/constant/app.const";
+import Image from "next/image";
 
 
 interface HeaderProps{
@@ -39,8 +41,7 @@ export function Header( {className,navItems}: HeaderProps) {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="flex items-center gap-2 text-xl font-bold">
-          <span className="text-primary">Article</span>
-          <span>AI</span>
+          <Image src={LOGO.svg.with_text} width={150} height={60} alt={BRAND_NAME + " Logo"} />
         </Link>
 
         {/* Desktop Navigation */}

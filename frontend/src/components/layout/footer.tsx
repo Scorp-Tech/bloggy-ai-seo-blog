@@ -1,13 +1,12 @@
-"use client";
-
-import { useInView } from "react-intersection-observer";
-// import { Github, Twitter, Linkedin } from "lucide-react";
+// import { useInView } from "react-intersection-observer";
+import Image from "next/image";
+import { LOGO, BRAND_NAME } from "@/constant/app.const";
 
 export function PrimaryFooter() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  });
+  // const [ref, inView] = useInView({
+  //   triggerOnce: true,
+  //   threshold: 0.1,
+  // });
 
   return (
     <footer className="bg-background py-12">
@@ -15,8 +14,7 @@ export function PrimaryFooter() {
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             <div>
               <div className="mb-4 flex items-center gap-2 text-xl font-bold">
-                <span className="text-primary">Article</span>
-                <span>AI</span>
+                <Image src={LOGO.svg.with_text} width={150} height={60} alt={BRAND_NAME + " Logo"} />
               </div>
               <p className="mb-4 text-muted-foreground">
                 AI-powered article generation platform for content creators and marketers.

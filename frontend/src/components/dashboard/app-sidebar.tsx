@@ -2,21 +2,17 @@
 
 import * as React from "react"
 import {
-  AudioWaveform,
-  BookOpen,
-  Bot,
-  Command,
-  Frame,
   GalleryVerticalEnd,
-  Map,
-  PieChart,
   Settings2,
   SquareTerminal,
-  Wrench
+  Wrench,
+  Archive,
+  Sparkles,
+  Sparkle,
+  Book
 } from "lucide-react"
 
 import { NavMain } from "@/components/dashboard/nav-main"
-import { NavProjects } from "@/components/dashboard/nav-projects"
 import { NavUser } from "@/components/dashboard/nav-user"
 import { TeamSwitcher } from "@/components/dashboard/team-switcher"
 import {
@@ -27,7 +23,21 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar"
 
-// interface
+let localCompanyData: {
+  company_name: string,
+  company_logo: string
+  plan: string
+} = {
+  company_name: "No Company",
+  company_logo: "../window.svg",
+  plan: "Free"
+}
+const t = localStorage.getItem("company")
+if(t)
+  localCompanyData = JSON.parse(t)
+
+console.log(localCompanyData);
+
 
 const data = {
   user: {
@@ -37,20 +47,10 @@ const data = {
   },
   teams: [
     {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
-    },
+      name: localCompanyData.company_name,
+      logo: localCompanyData.company_logo,
+      plan: localCompanyData.plan,
+    }
   ],
   navMain: [
     {
@@ -60,45 +60,49 @@ const data = {
       isActive: true,
     },
     {
-      title: "Tools",
+      title: "Blog Generator",
+      url: "/dashboard/blog-generation",
+      icon: Sparkle
+    },
+    {
+      title: "Recent Blogs",
+      url: "/dashboard/recent-blogs",
+      icon: Archive,
+    },
+    {
+      title: "My Content",
+      url: "/dashboard/my-content",
+      icon: Book
+    },
+    {
+      title: "SEO Tools",
       url: "#",
       icon: Wrench,
       items: [
         {
-          title: "Rich text creator",
-          url: "/dashboard/rich-text",
+          title: "Keyword Research",
+          url: "#"
         },
         {
-          title: "Explorer",
+          title: "Crawler",
+          url: "#"
+        },
+        {
+          title: "Page Speed Insights",
           url: "#",
         },
         {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
+          title: "Plagiarism Checker",
           url: "#",
         },
         {
-          title: "Get Started",
+          title: "Rank Checker",
           url: "#",
         },
         {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
+          title: "Internal Linking",
+          url: "#"
+        }
       ],
     },
     {
@@ -124,24 +128,12 @@ const data = {
         },
       ],
     },
-  ],
-  projects: [
     {
-      name: "Design Engineering",
+      title: "Upgrade to pro",
       url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
-  ],
+      icon: Sparkles
+    }
+  ]
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -152,7 +144,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        {data?.projects && <NavProjects projects={data.projects} />}
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />

@@ -1,0 +1,9 @@
+.idea
+.vscode
+yarn.lock
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*

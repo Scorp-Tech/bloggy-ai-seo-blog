@@ -7,3 +7,9 @@ export const NAV_ITEMS = [
   ];
 
 export const BRAND_NAME = "Rank Up SEO"
+export const LOGO = {
+  svg: {
+    default: "rank_up_logo_no_text.svg",
+    with_text: "rank_up_logo.svg"
+  }
+}

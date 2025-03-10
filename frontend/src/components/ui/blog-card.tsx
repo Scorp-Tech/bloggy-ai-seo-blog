@@ -54,7 +54,7 @@ export function BlogCard({
             {title}
           </h3>
           
-          <p className="text-muted-foreground">{excerpt}</p>
+          <p className="text-muted-foreground line-clamp-4">{excerpt}</p>
           
           <div className="mt-4 text-sm font-medium text-primary">
             Read more →

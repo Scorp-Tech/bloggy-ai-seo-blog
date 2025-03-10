@@ -37,7 +37,7 @@ export function LoginForm({
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     try {
       const data = await login({
         email: formData.email,
@@ -132,9 +132,9 @@ export function LoginForm({
                       Forgot your password?
                     </a>
                   </div>
-                  <Input 
-                    id="password" 
-                    type="password" 
+                  <Input
+                    id="password"
+                    type="password"
                     required
                     value={formData.password}
                     onChange={handleChange}

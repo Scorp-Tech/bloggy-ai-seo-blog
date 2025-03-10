@@ -60,7 +60,7 @@ body {
     --popover: 240 10% 4%;
     --popover-foreground: 0 0% 98%;
     --primary: 263 90% 51%;
-    --primary-foreground: 0 0% 98%;
+    --primary-foreground: 0 0% 100%;
     --secondary: 240 4% 16%;
     --secondary-foreground: 0 0% 98%;
     --muted: 240 4% 16%;
@@ -233,7 +233,7 @@ button:active {
   * {
     @apply border-border outline-ring/50;
   }
-  body {
+body {
     @apply bg-background text-foreground;
   }
 }
