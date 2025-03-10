@@ -25,12 +25,15 @@ import { TextButtons } from "./selectors/text-buttons";
 import { slashCommand, suggestionItems } from "./slash-command";
 
 import hljs from "highlight.js";
+import SEOChecklist from "./ui/seo-checklist";
 const extensions = [...defaultExtensions, slashCommand];
 
 const MarkdownEditor = () => {
   const [initialContent, setInitialContent] = useState<null | JSONContent>(null);
   const [saveStatus, setSaveStatus] = useState("Saved");
   const [charsCount, setCharsCount] = useState();
+  const [keyword, setKeyword] = useState("")
+  const [markdownContent, setMarkdownContent] = useState("")
 
   const [openNode, setOpenNode] = useState(false);
   const [openLink, setOpenLink] = useState(false);
@@ -52,11 +55,14 @@ const MarkdownEditor = () => {
     window.localStorage.setItem("html-content", highlightCodeblocks(editor.getHTML()));
     window.localStorage.setItem("novel-content", JSON.stringify(json));
     window.localStorage.setItem("markdown", editor.storage.markdown.getMarkdown());
+    setMarkdownContent(editor.storage.markdown.getMarkdown())
     setSaveStatus("Saved");
   }, 500);
 
   useEffect(() => {
     const content = window.localStorage.getItem("html-content") as unknown
+    setKeyword(window.localStorage.getItem("keyword") as string)
+    setMarkdownContent(window.localStorage.getItem("markdown") as string)
     // if (content) setInitialContent(JSON.parse(content));
     if(content)
       setInitialContent(content);
@@ -66,12 +72,6 @@ const MarkdownEditor = () => {
 
   return (
     <div className="relative w-full flex justify-center">
-      <div className="flex absolute right-5 top-5 z-10 mb-5 gap-2">
-        <div className="rounded-lg bg-[#0000000d] px-2 py-1 text-sm text-muted-foreground">{saveStatus}</div>
-        <div className={charsCount ? "rounded-lg bg-[#0000000d] px-2 py-1 text-sm text-muted-foreground" : "hidden"}>
-          {charsCount} Words
-        </div>
-      </div>
       <EditorRoot>
         <EditorContent
           initialContent={initialContent}
@@ -128,6 +128,15 @@ const MarkdownEditor = () => {
           </EditorBubble>
         </EditorContent>
       </EditorRoot>
+      <div className="relative w-96">
+        <div className="flex fixed right-5 top-5 z-10 mb-5 gap-2">
+          <div className="rounded-lg bg-[#0000000d] px-2 py-1 text-sm text-muted-foreground">{saveStatus}</div>
+          <div className={charsCount ? "rounded-lg bg-[#0000000d] px-2 py-1 text-sm text-muted-foreground" : "hidden"}>
+            {charsCount} Words
+          </div>
+        </div>
+        <SEOChecklist markdown={markdownContent} keyword={keyword} />
+      </div>
     </div>
   );
 };
