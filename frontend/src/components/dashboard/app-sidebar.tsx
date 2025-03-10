@@ -12,7 +12,9 @@ import {
   PieChart,
   Settings2,
   SquareTerminal,
-  Wrench
+  Wrench,
+  Archive,
+  Users2
 } from "lucide-react"
 
 import { NavMain } from "@/components/dashboard/nav-main"
@@ -58,6 +60,16 @@ const data = {
       url: "/dashboard",
       icon: SquareTerminal,
       isActive: true,
+    },
+    {
+      title: "Recent Articals",
+      url: "/dashboard/recent-articals",
+      icon: Archive,
+    },
+    {
+      title: "User Managements",
+      url: "/dashboard/user-managements",
+      icon: Users2,
     },
     {
       title: "Tools",

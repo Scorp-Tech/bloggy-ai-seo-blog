@@ -2,6 +2,10 @@
 
 import { HeaderTitle } from "@/components/common/header-title";
 import { MatrixCardSmall } from "@/components/common/matrix-card-small";
+import { ArticleList } from "@/components/sections/dashboard/artical-list";
+import BillingDashboard from "@/components/sections/dashboard/billing-dashboard";
+import { DashboardStats } from "@/components/sections/dashboard/dashboard-stats";
+import { UserManagement } from "@/components/sections/dashboard/user-management";
 import { CardHeader, Card } from "@/components/ui/card";
 import { Users, FileChartColumnIncreasing, Plug, EllipsisVerticalIcon, ChartNoAxesCombined } from "lucide-react";
 
@@ -21,7 +25,7 @@ export default function Dashboard() {
 function SmallCardsGroup() {
   return (
     <>
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
       <MatrixCardSmall
         icon={FileChartColumnIncreasing}
         title="Total Blogs"
@@ -50,16 +54,18 @@ function SmallCardsGroup() {
         status="gain"
         metric={{ value: 5, type: 'points', comparison: "vs last week" }}
       />
-      <MatrixCardSmall
+      {/* <MatrixCardSmall
         icon={ChartNoAxesCombined}
         title="Backlinks"
         value="10K"
         status="connected"
         metric={{ value: 'Active Website'}}
-      />
+      /> */}
 
     </div>
-    <div className="w-3/5 h-1/3 mt-auto">
+    <DashboardStats />
+    <BillingDashboard />
+    {/* <div className="w-3/5 h-1/3 mt-auto">
         <HeaderTitle title="Recent Blogs" children={<div>View All</div>} />
         <div className="rounded-xl ml-2 mr-2 h-1/4 border border-gray-600 p-1 pl-2 mb-3">
           <header className="">10 SEO Tips for better Rankings</header>
@@ -70,7 +76,8 @@ function SmallCardsGroup() {
           <header className="">Content Marketing Strategy Guide</header>
           <div className="font- flex flex-wrap text-gray-500">Published <div className="text-gray-500 ml-2">3 days Ago</div></div>
         </div>        
-    </div>
+    </div> */}
+  
     </>
     
   )
