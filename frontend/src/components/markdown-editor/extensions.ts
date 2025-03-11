@@ -10,15 +10,14 @@ import {
   Placeholder,
   StarterKit,
   TextStyle,
-  TiptapImage,
   TiptapLink,
   TiptapUnderline,
-  UpdatedImage,
-  UploadImagesPlugin,
+  UpdatedImage
 } from "novel";
 
 import { cx } from "class-variance-authority";
 import { common, createLowlight } from "lowlight";
+import TipTapImage from './image';
 
 const placeholder = Placeholder.configure({
   placeholder: "Write '/' here to get started",
@@ -30,23 +29,6 @@ const tiptapLink = TiptapLink.configure({
     class: cx(
       "text-muted-foreground underline underline-offset-[3px] hover:text-primary transition-colors cursor-pointer",
     ),
-  },
-});
-
-
-
-const tiptapImage = TiptapImage.extend({
-  addProseMirrorPlugins() {
-    return [
-      UploadImagesPlugin({
-        imageClass: cx("opacity-40 rounded-lg border border-stone-200"),
-      }),
-    ];
-  },
-}).configure({
-  allowBase64: true,
-  HTMLAttributes: {
-    class: cx("rounded-lg border border-muted"),
   },
 });
 
@@ -127,7 +109,6 @@ export const defaultExtensions = [
   starterKit,
   placeholder,
   tiptapLink,
-  tiptapImage,
   updatedImage,
   horizontalRule,
   codeBlockLowlight,
@@ -139,5 +120,6 @@ export const defaultExtensions = [
   Color,
   CustomKeymap,
   GlobalDragHandle,
-  placeholder
+  placeholder,
+  TipTapImage,
 ];

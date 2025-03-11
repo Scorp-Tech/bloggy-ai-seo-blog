@@ -26,6 +26,9 @@ import { slashCommand, suggestionItems } from "./slash-command";
 
 import hljs from "highlight.js";
 import SEOChecklist from "./ui/seo-checklist";
+
+import { defaultEditorContent } from "@/lib/content";
+
 const extensions = [...defaultExtensions, slashCommand];
 
 const MarkdownEditor = () => {
@@ -66,6 +69,8 @@ const MarkdownEditor = () => {
     // if (content) setInitialContent(JSON.parse(content));
     if(content)
       setInitialContent(content);
+    else 
+      setInitialContent(defaultEditorContent);
   }, []);
 
   if (!initialContent) return null;
