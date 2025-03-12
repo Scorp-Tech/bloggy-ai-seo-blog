@@ -294,18 +294,18 @@ body {
 
 
 .image .alt-text-indicator {
-  font-size: 0.8em;
+  font-size: 15px;
   position: absolute;
   bottom: 10px;
   left: 10px;
-  max-width: calc(100% - 20px);
-  padding: 0 0.5em;
-  border: 1px solid #242424;
+  max-width: 100%;
+  padding: 0 10px 0 3px;
   background-color: rgba(255, 255, 255, 0.8);
   display: inline-flex;
   align-items: center;
   overflow: hidden;
   gap: 0.25em;
+  border-radius: 5px;
 }
 
 .image .alt-text-indicator .symbol {
