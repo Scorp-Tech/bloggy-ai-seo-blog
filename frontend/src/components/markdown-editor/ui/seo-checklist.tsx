@@ -67,7 +67,7 @@ const priorityColors: Record<string, string> = {
 };
 
 const SEOChecklist = ({ markdown, keyword }: {markdown: string, keyword: string}) => {
-    const [results, setResults] = useState<{ item: string; priority: string; passed: string | boolean; sign: string; message: string }[]>([]);
+    const [results, setResults] = useState<{ item: string; priority: string; passed: string | boolean; sign: string; message: string, status: string }[]>([]);
     
     React.useEffect(() => {
         if(markdown && keyword){
@@ -78,8 +78,9 @@ const SEOChecklist = ({ markdown, keyword }: {markdown: string, keyword: string}
                     item: item.item,
                     priority: item.priority,
                     passed: passed,
-                    sign: typeof passed === 'string' ? "❓" : (passed? "✅" : "❌"),
-                    message: typeof passed == 'string'? passed : ""
+                    sign: typeof passed === 'string' ? "❔" : (passed? "✅" : "❌"),
+                    message: typeof passed == 'string'? passed : "",
+                    status: typeof passed === 'string' ? "Status: Unknown" : (passed? "Status: passed" : "Status: failed"),
                 }});
             };
             setResults(evaluateChecklist(markdown, keyword));
@@ -92,8 +93,8 @@ const SEOChecklist = ({ markdown, keyword }: {markdown: string, keyword: string}
             <div className="bg-green-200 w-fit px-4 py-1 rounded-2xl">Focus keyword: {keyword}</div>
             <ul className="text-xs font-light border-t first:border-b-0 mt-1">
                 {results.map((check, index) => (
-                    <li key={index} className="flex items-center gap-3 py-1 border-b last:border-b-0">
-                        {<span>{check.sign}</span>}
+                    <li title={check.status} key={index} className="flex items-center gap-3 py-1 border-b last:border-b-0">
+                        {<span className="cursor-pointer">{check.sign}</span>}
                         <span className={`flex-1 ${check.passed ? 'text-gray-800' : 'text-gray-600'}`}>{check.item}
                             <br></br><span className={`flex-1 ${check.passed ? 'text-gray-400' : 'text-gray-600'}`}>{check.message}</span>
                         </span>
